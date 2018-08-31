@@ -56,6 +56,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.github.nisrulz.sensey.Sensey;
 import com.google.blocks.ftcrobotcontroller.BlocksActivity;
 import com.google.blocks.ftcrobotcontroller.ProgrammingModeActivity;
 import com.google.blocks.ftcrobotcontroller.ProgrammingModeControllerImpl;
@@ -305,6 +306,7 @@ public class FtcRobotControllerActivity extends Activity
     ServiceController.startService(FtcRobotControllerWatchdogService.class);
     bindToService();
     logPackageVersions();
+    Sensey.getInstance().init(this, Sensey.SAMPLING_PERIOD_GAME);
   }
 
   protected UpdateUI createUpdateUI() {
@@ -384,6 +386,7 @@ public class FtcRobotControllerActivity extends Activity
 
     preferencesHelper.getSharedPreferences().unregisterOnSharedPreferenceChangeListener(sharedPreferencesListener);
     RobotLog.cancelWriteLogcatToDisk();
+    Sensey.getInstance().stop();
   }
 
   protected void bindToService() {

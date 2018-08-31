@@ -1,6 +1,6 @@
 tasks.whenTaskAdded { task ->
-    if(task.name.equals("lintVitalRelease") || task.name.equals("lintVitalDebug")) {
-        task.enabled = false
+    if(task.name.contains("lint")) {
+        task.enabled = false;
     }
 }
 apply plugin: 'com.android.application'
