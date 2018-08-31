@@ -3,7 +3,14 @@ tasks.whenTaskAdded { task ->
         task.enabled = false;
     }
 }
+
 apply plugin: 'com.android.application'
+
+task sync(type: Exec) {
+    commandLine 'git', 'fetch', 'upstream'
+    commandLine 'git', 'checkout', 'master'
+    commandLine 'git', 'merge', 'upstream/gmaster'
+}
 
 android {
     compileSdkVersion 23
