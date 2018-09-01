@@ -14,7 +14,7 @@ apply plugin: 'com.android.application'
 task sync(type: Exec) {
     commandLine 'git', 'fetch', 'upstream'
     commandLine 'git', 'checkout', 'master'
-    commandLine 'git', 'merge', 'upstream/gmaster'
+    commandLine 'git', 'merge', 'upstream/master'
 }
 
 android {
