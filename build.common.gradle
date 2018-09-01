@@ -4,6 +4,11 @@ tasks.whenTaskAdded { task ->
     }
 }
 
+tasks.withType(JavaCompile) {
+    options.fork = true
+    options.incremental = true
+}
+
 apply plugin: 'com.android.application'
 
 task sync(type: Exec) {

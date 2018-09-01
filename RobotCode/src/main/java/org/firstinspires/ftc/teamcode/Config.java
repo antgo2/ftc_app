@@ -32,6 +32,7 @@ public class Config extends NanoWSD implements SharedPreferences {
   static HashMap<String, String> props = null;
   static File conf = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/FIRST", "config.conf");
 
+  @SuppressWarnings("unchecked")
   private Config(String hostname, int port) throws IOException {
     super(hostname, port);
     if(!conf.exists()) conf.createNewFile();
