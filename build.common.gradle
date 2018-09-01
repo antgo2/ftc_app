@@ -11,12 +11,6 @@ tasks.withType(JavaCompile) {
 
 apply plugin: 'com.android.application'
 
-task sync(type: Exec) {
-    commandLine 'git', 'fetch', 'upstream'
-    commandLine 'git', 'checkout', 'master'
-    commandLine 'git', 'merge', 'upstream/master'
-}
-
 android {
     compileSdkVersion 23
     buildToolsVersion '25.0.3'
