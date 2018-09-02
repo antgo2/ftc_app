@@ -48,10 +48,9 @@ public class Config extends NanoWSD implements SharedPreferences {
     if(instance == null) {
       WifiManager wm = (WifiManager) AppUtil.getInstance().getActivity().getApplicationContext().getSystemService(Context.WIFI_SERVICE);
       int ip = wm != null ? wm.getConnectionInfo().getIpAddress() : 0;
-      String ipString = String.format(Locale.US,"%d.%d.%d.%d", (ip & 0xff), (ip >> 8 & 0xff), (ip >> 16 & 0xff), (ip >> 24 & 0xff));
-      ipAddr = ipString;
+      ipAddr = String.format(Locale.US,"%d.%d.%d.%d", (ip & 0xff), (ip >> 8 & 0xff), (ip >> 16 & 0xff), (ip >> 24 & 0xff));
       try {
-        instance = new Config(ipString, port);
+        instance = new Config(ipAddr, port);
       } catch (IOException e) {
         e.printStackTrace();
       }
