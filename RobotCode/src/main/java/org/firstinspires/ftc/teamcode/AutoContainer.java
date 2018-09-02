@@ -15,11 +15,17 @@ public class AutoContainer extends LinearOpMode {
 
   @Autonomous(name = "RED")
   class RedAugment extends AutoContainer {
-
+    @Override
+    public void runOpMode() throws InterruptedException {
+      super.runOpMode();
+    }
   }
 
   @Autonomous(name = "BLUE")
   class BlueAugment extends AutoContainer {
-
+    @Override
+    public void runOpMode() throws InterruptedException {
+      super.runOpMode();
+    }
   }
 }
