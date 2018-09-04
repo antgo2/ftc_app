@@ -89,15 +89,8 @@ public class MainTeleOp extends OpMode {
       }
 
       // get value from the array.
-      double dScale = 0.0;
-      if (dVal < 0) {
-        dScale = -scaleArray[index];
-      } else {
-        dScale = scaleArray[index];
-      }
-
       // return scaled value.
-      return dScale;
+      return (dVal < 0) ? -scaleArray[index] : scaleArray[index];
     }
   }
 }
