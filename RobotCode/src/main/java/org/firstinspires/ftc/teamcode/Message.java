@@ -131,6 +131,9 @@ public class Message {
     int semiLastIndex = input.lastIndexOf(';');
     String[] mediaTypes = input.substring(0, semiLastIndex-1).split(";");
     String[] dataRaw = input.substring(semiLastIndex+1, input.length()).split(",");
-    return new Message(mediaTypes, dataRaw[0], Base64.decode(dataRaw[1], Base64.DEFAULT));
+    if(dataRaw[0].equals("base64")) {
+      return new Message(mediaTypes, dataRaw[0], Base64.decode(dataRaw[1], Base64.DEFAULT));
+    }
+    return new Message(mediaTypes, dataRaw[0], dataRaw[1]);
   }
 }

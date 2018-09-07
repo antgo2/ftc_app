@@ -2,7 +2,7 @@ var origin = $("meta[name='origin']").attr("content");
 var socket = new WebSocket("ws://" + origin);
 socket.onmessage = function(message) {
   if(message.data.split(";")[0] == "text/config") {
-    atob(message.data.split(",")[1]).split("&").forEach(function(pair) {
+    message.data.split(",")[1].split("&").forEach(function(pair) {
         pair = pair.split("=");
         if (pair[0].indexOf(".") == -1) {
           pair[0] = "." + pair[0];
@@ -50,7 +50,7 @@ socket.onmessage = function(message) {
   }
 };
 $("input").change(function() {
-  socket.send("text/config;base64," + btoa($(this).attr("key") + "=" + $(this).val()));
+  socket.send("text/config;," + $(this).attr("key") + "=" + $(this).val());
 });
 $(window).unload(function() {
   socket.close();
