@@ -56,6 +56,14 @@ public class OpenCVManager implements CameraBridgeViewBase.CvCameraViewListener2
     public void process(Mat rgba, Mat gray, Mat modifiable);
   }
 
+  public void addListener(Listener listener) {
+    list.add(listener);
+  }
+
+  public void removeListener(Listener listener) {
+    list.remove(listener);
+  }
+
   @Override
   public Mat onCameraFrame(CameraBridgeViewBase.CvCameraViewFrame frame) {
     Mat modified = frame.gray();

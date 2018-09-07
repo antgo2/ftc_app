@@ -1,7 +1,8 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.auto;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import org.firstinspires.ftc.teamcode.OpenCVManager;
 
 public class AutoContainer extends LinearOpMode {
   OpenCVManager manager = new OpenCVManager(hardwareMap.appContext, 0);

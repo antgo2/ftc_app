@@ -78,7 +78,7 @@ public class Config extends NanoWSD implements SharedPreferences {
     try(Scanner s = new Scanner(context.getAssets().open("interface.html")).useDelimiter("\\A")) {
       StringBuilder sb = new StringBuilder(s.next());
       String meta = String.format(Locale.US, "<meta name='origin' content='%s:%d'/>", ipAddr, port);
-      String ret = sb.insert(s.next().indexOf("<head>"+6), meta).toString();
+      String ret = sb.insert(s.next().indexOf("<head>"+7), meta).toString();
       return newFixedLengthResponse(Response.Status.OK, NanoHTTPD.MIME_HTML, ret);
     } catch (IOException e) {
       e.printStackTrace();

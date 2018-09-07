@@ -22,8 +22,10 @@ class ConfigSocket extends NanoWSD.WebSocket {
       }
       sb.append(String.format("%s=%s", entry.getKey(), entry.getValue()));
     }
+
     try {
-      send(sb.toString());
+      Message message = new Message(new String[]{"text/config"}, "base64", sb.toString());
+      send(message.toString());
     } catch (IOException e) {
       e.printStackTrace();
     }
@@ -40,8 +42,11 @@ class ConfigSocket extends NanoWSD.WebSocket {
 
   @Override
   protected void onMessage(NanoWSD.WebSocketFrame message) {
-    String[] payload = message.getTextPayload().split("=");
-    Config.props.put(payload[0], payload[1]);
+    Message received = Message.parse(message.getTextPayload());
+    if(received.getMediaType().equals("text/config")) {
+      String[] payload = received.getData().split("=");
+      Config.props.put(payload[0], payload[1]);
+    }
   }
 
   @Override
