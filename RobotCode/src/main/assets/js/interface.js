@@ -1,8 +1,13 @@
 var origin = $("meta[name='origin']").attr("content");
 var socket = new WebSocket("ws://" + origin);
 socket.onmessage = function(message) {
-  if(message.data.split(";")[0] == "text/config") {
-    message.data.split(",")[1].split("&").forEach(function(pair) {
+  var part1 = message.data.split(";");
+  var part2 = part1[1].split(",");
+  var type = part1[0];
+  var extension = part2[0];
+  var data = part2[1];
+  if(type == "text/config") {
+    data.split("&").forEach(function(pair) {
         pair = pair.split("=");
         if (pair[0].indexOf(".") == -1) {
           pair[0] = "." + pair[0];

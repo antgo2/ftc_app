@@ -24,7 +24,7 @@ class ConfigSocket extends NanoWSD.WebSocket {
     }
 
     try {
-      Message message = new Message(new String[]{"text/config"}, "", sb.toString());
+      Message message = new Message("text/config", "", sb.toString());
       send(message.toString());
     } catch (IOException e) {
       e.printStackTrace();
