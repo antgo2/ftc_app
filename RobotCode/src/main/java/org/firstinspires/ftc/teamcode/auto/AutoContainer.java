@@ -10,20 +10,21 @@ public class AutoContainer extends LinearOpMode {
   @Override
   public void runOpMode() throws InterruptedException {
     manager.enable();
+    AutoTransitioner.transitionOnStop(this, "TELEOP");
     waitForStart();
     manager.disable();
   }
 
-  @Autonomous(name = "RED")
-  class RedAugment extends AutoContainer {
+  @Autonomous(name = "FACING DEPOT")
+  class DepotAugment extends AutoContainer {
     @Override
     public void runOpMode() throws InterruptedException {
       super.runOpMode();
     }
   }
 
-  @Autonomous(name = "BLUE")
-  class BlueAugment extends AutoContainer {
+  @Autonomous(name = "FACING CRATER")
+  class CraterAugment extends AutoContainer {
     @Override
     public void runOpMode() throws InterruptedException {
       super.runOpMode();
