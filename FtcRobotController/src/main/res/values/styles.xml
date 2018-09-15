@@ -3,21 +3,27 @@
 <resources>
 
     <style name="AppThemeRedRC" parent="AppTheme.Red">
+        <item name="android:windowBackground">@drawable/splash</item>
     </style>
 
     <style name="AppThemeGreenRC" parent="AppTheme.Green">
+        <item name="android:windowBackground">@drawable/splash</item>
     </style>
 
     <style name="AppThemeBlueRC" parent="AppTheme.Blue">
+        <item name="android:windowBackground">@drawable/splash</item>
     </style>
 
     <style name="AppThemePurpleRC" parent="AppTheme.Purple">
+        <item name="android:windowBackground">@drawable/splash</item>
     </style>
 
     <style name="AppThemeOrangeRC" parent="AppTheme.Orange">
+        <item name="android:windowBackground">@drawable/splash</item>
     </style>
 
     <style name="AppThemeTealRC" parent="AppTheme.Teal">
+        <item name="android:windowBackground">@drawable/splash</item>
     </style>
 
 </resources>

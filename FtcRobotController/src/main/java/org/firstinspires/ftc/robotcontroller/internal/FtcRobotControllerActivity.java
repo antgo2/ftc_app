@@ -55,8 +55,6 @@ import android.webkit.WebView;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import com.github.nisrulz.sensey.Sensey;
 import com.google.blocks.ftcrobotcontroller.BlocksActivity;
 import com.google.blocks.ftcrobotcontroller.ProgrammingModeActivity;
 import com.google.blocks.ftcrobotcontroller.ProgrammingModeControllerImpl;
@@ -78,6 +76,7 @@ import com.qualcomm.ftccommon.configuration.EditParameters;
 import com.qualcomm.ftccommon.configuration.FtcLoadFileActivity;
 import com.qualcomm.ftccommon.configuration.RobotConfigFile;
 import com.qualcomm.ftccommon.configuration.RobotConfigFileManager;
+import com.qualcomm.ftcrobotcontroller.BuildConfig;
 import com.qualcomm.ftcrobotcontroller.R;
 import com.qualcomm.hardware.HardwareFactory;
 import com.qualcomm.robotcore.eventloop.EventLoopManager;
@@ -112,10 +111,21 @@ import org.firstinspires.inspection.RcInspectionActivity;
 
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
+import org.opencv.android.OpenCVLoader;
 
 @SuppressWarnings("WeakerAccess")
-public class FtcRobotControllerActivity extends Activity
-  {
+public class FtcRobotControllerActivity extends Activity {
+  static {
+    new Thread(new Runnable() {
+      @Override public void run() {
+        System.loadLibrary("opencv_java3");
+        if(BuildConfig.DEBUG) {
+          OpenCVLoader.initDebug();
+        }
+      }
+    }).start();
+  }//hook opencv
+
   public static final String TAG = "RCActivity";
   public String getTag() { return TAG; }
 
@@ -306,7 +316,6 @@ public class FtcRobotControllerActivity extends Activity
     ServiceController.startService(FtcRobotControllerWatchdogService.class);
     bindToService();
     logPackageVersions();
-    Sensey.getInstance().init(this, Sensey.SAMPLING_PERIOD_GAME);
   }
 
   protected UpdateUI createUpdateUI() {
@@ -386,7 +395,6 @@ public class FtcRobotControllerActivity extends Activity
 
     preferencesHelper.getSharedPreferences().unregisterOnSharedPreferenceChangeListener(sharedPreferencesListener);
     RobotLog.cancelWriteLogcatToDisk();
-    Sensey.getInstance().stop();
   }
 
   protected void bindToService() {

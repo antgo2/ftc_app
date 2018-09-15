@@ -1,19 +1,21 @@
 package org.firstinspires.ftc.teamcode.auto;
 
+import android.os.Bundle;
+import com.qualcomm.robotcore.exception.DuplicateNameException;
 import java.util.HashMap;
 
-abstract class State {
+public abstract class State {
   private static HashMap<String, State> list = new HashMap<>();
 
-  State(String name) {
-    if(list.get(name) != null) throw new IllegalStateException();
+  public State(String name) {
+    if(list.get(name) != null) throw new DuplicateNameException(name);
     list.put(name, this);
   }
 
-  abstract void run(Object... args);
+  abstract void run(Bundle args);
 
-  static void transit(String next, Object... args) {
-    if(list.size() <= 1) throw new IllegalStateException();
+  public static void transmit(String next, Bundle args) {
+    if(list.size() <= 1) throw new IndexOutOfBoundsException();
     list.get(next).run(args);
   }
 }
